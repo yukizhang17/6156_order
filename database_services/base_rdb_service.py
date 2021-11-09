@@ -92,6 +92,7 @@ class BaseDataResource:
             clause += " LIMIT " + str(limit)
         if offset is not None:
             clause += " OFFSET " + str(offset)
+        return clause
 
     @classmethod
     def find_by_template(cls, db_schema, table_name, template, limit=None, offset=None):
@@ -173,7 +174,7 @@ class BaseDataResource:
         conn.close()
 
         return res
-    
+
     @classmethod
     def find_in_condition(cls, db_schema, table_name, select_vars, in_variable, in_values):
 
@@ -195,4 +196,4 @@ class BaseDataResource:
 
         conn.close()
 
-        return res 
+        return res
