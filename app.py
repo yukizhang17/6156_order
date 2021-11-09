@@ -50,4 +50,4 @@ def users_id_product(userID):
         return json.dumps(get_order_by_uid(userID)), 200
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', debug=True)
