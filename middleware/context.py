@@ -10,9 +10,9 @@ def get_db_info():
 
     :return: A dictionary with connect info for MySQL
     """
-    db_host = "localhost"
-    db_user = "root"
-    db_password = "dbuserdbuser"
+    db_host = "users.cubiv2uslsza.us-east-1.rds.amazonaws.com"
+    db_user = "admin"
+    db_password = "CC6156CC"
 
     if db_host is not None:
         db_info = {
