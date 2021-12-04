@@ -21,7 +21,7 @@ def orders():
     """
     # Or return all data entries from table
     if flask.request.method == 'GET':
-        return json.dumps(get_all_order()), 200
+        return json.dumps(get_all_order(), default=str), 200
 
     else:
         oid = insert_order(request.form)
@@ -37,7 +37,7 @@ def order_id(orderID):
         res = get_order_by_oid(orderID)
         if len(res) == 0:
             return "Cannot find resource.", 404
-        return json.dumps(res), 200
+        return json.dumps(res, default=str), 200
 
     elif flask.request.method == 'POST':
         update_order_status(orderID, request.form)
@@ -49,7 +49,7 @@ def orders_by_user_id(userID):
     """
     Function to get orders by uid
     """
-    return json.dumps(get_order_by_uid(userID)), 200
+    return json.dumps(get_order_by_uid(userID), default=str), 200
 
 
 @app.route('/orders/business/<businessID>', methods=['GET'])
@@ -57,8 +57,8 @@ def orders_by_business_id(businessID):
     """
     Function to get orders by bid
     """
-    return json.dumps(get_order_by_bid(businessID)), 200
+    return json.dumps(get_order_by_bid(businessID), default=str), 200
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', port=5001)
