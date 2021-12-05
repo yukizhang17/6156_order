@@ -15,14 +15,14 @@ def get_order_by_oid(order_id):
     return BaseApplicationResource.get_by_template(DB, TABLE, template)
 
 
-def get_order_by_uid(user_id):
+def get_order_by_uid(user_id, limit, offset):
     template = {"uid": user_id}
-    return BaseApplicationResource.get_by_template(DB, TABLE, template)
+    return BaseApplicationResource.get_by_template(DB, TABLE, template, limit, offset)
 
 
-def get_order_by_bid(business_id):
+def get_order_by_bid(business_id, limit, offset):
     template = {"bid": business_id}
-    return BaseApplicationResource.get_by_template(DB, TABLE, template)
+    return BaseApplicationResource.get_by_template(DB, TABLE, template, limit, offset)
 
 
 def insert_order(create_data):

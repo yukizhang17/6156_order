@@ -27,7 +27,7 @@ def orders():
         oid = insert_order(request.form)
         if oid == "Failed":
             return "The order couldn't been created", 400
-        res = {"location": f"/users/{oid}"}
+        res = {"location": f"/orders/{oid}"}
         return json.dumps(res), 201
 
 
@@ -49,7 +49,16 @@ def orders_by_user_id(userID):
     """
     Function to get orders by uid
     """
-    return json.dumps(get_order_by_uid(userID), default=str), 200
+    form = flask.request.form
+    offset = None
+    limit = None
+
+    for element in form:
+        if element == "limit":
+            limit = form[element]
+        elif element == "offset":
+            offset = form[element]
+    return json.dumps(get_order_by_uid(userID, limit, offset), default=str), 200
 
 
 @app.route('/orders/business/<businessID>', methods=['GET'])
@@ -57,8 +66,19 @@ def orders_by_business_id(businessID):
     """
     Function to get orders by bid
     """
-    return json.dumps(get_order_by_bid(businessID), default=str), 200
+
+    form = flask.request.form
+    offset = None
+    limit = None
+
+    for element in form:
+        if element == "limit":
+            limit = form[element]
+        elif element == "offset":
+            offset = form[element]
+
+    return json.dumps(get_order_by_bid(businessID, limit, offset), default=str), 200
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0')
