@@ -3,6 +3,7 @@ from flask import *
 from application_services.order_service import *
 import json
 from flask_cors import CORS
+from middleware import notification
 
 app = Flask(__name__)
 CORS(app)
@@ -28,6 +29,7 @@ def orders():
         if oid == "Failed":
             return "The order couldn't been created", 400
         res = {"location": f"/orders/{oid}"}
+        notification.notify(flask.request)
         return json.dumps(res), 201
 
 
