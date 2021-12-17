@@ -49,15 +49,14 @@ def orders_by_user_id(userID):
     """
     Function to get orders by uid
     """
-    form = flask.request.json
+    # form = flask.request.json
     offset = None
     limit = None
-
-    for element in form:
-        if element == "limit":
-            limit = form[element]
-        elif element == "offset":
-            offset = form[element]
+    # for element in form:
+    #     if element == "limit":
+    #         limit = form[element]
+    #     elif element == "offset":
+    #         offset = form[element]
     return json.dumps(get_order_by_uid(userID, limit, offset), default=str), 200
 
 
@@ -67,15 +66,15 @@ def orders_by_business_id(businessID):
     Function to get orders by bid
     """
 
-    form = flask.request.json
+    # form = flask.request.json
     offset = None
     limit = None
 
-    for element in form:
-        if element == "limit":
-            limit = form[element]
-        elif element == "offset":
-            offset = form[element]
+    # for element in form:
+    #     if element == "limit":
+    #         limit = form[element]
+    #     elif element == "offset":
+    #         offset = form[element]
 
     return json.dumps(get_order_by_bid(businessID, limit, offset), default=str), 200
 
