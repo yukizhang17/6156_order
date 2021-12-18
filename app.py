@@ -25,7 +25,7 @@ def orders():
         return json.dumps(get_all_order(), default=str), 200
 
     else:
-        oid = insert_order(request.json)
+        oid = insert_order(request.form)
         if oid == "Failed":
             return "The order couldn't been created", 400
         res = {"location": f"/orders/{oid}"}
@@ -42,7 +42,7 @@ def order_id(orderID):
         return json.dumps(res, default=str), 200
 
     elif flask.request.method == 'POST':
-        update_order_status(orderID, request.json)
+        update_order_status(orderID, request.form)
         return f"Order {orderID}'s status has been updated", 200
 
 
@@ -51,7 +51,7 @@ def orders_by_user_id(userID):
     """
     Function to get orders by uid
     """
-    # form = flask.request.json
+    # form = flask.request.form
     offset = None
     limit = None
     # for element in form:
@@ -68,7 +68,7 @@ def orders_by_business_id(businessID):
     Function to get orders by bid
     """
 
-    # form = flask.request.json
+    # form = flask.request.form
     offset = None
     limit = None
 
