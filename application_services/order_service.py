@@ -55,6 +55,5 @@ def insert_order_by_uid(uid, create_data):
 
 
 def update_order_status(orderID, update_data):
-    update_data['timestamp'] = datetime.now()
     template = {'oid': orderID}
     BaseApplicationResource.update(DB, TABLE, update_data, template)
